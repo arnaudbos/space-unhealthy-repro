@@ -1,0 +1,29 @@
+schemaVersion: 2.2.0
+metadata:
+  name: 'Default Space config for Space dev env'
+attributes:
+  space:
+    # regular (4 vCPUs, 8 GB), large (8 vCPUs, 16 GB), xlarge (16 vCPUs, 32 GB)
+    instanceType: regular
+    editor:
+      # (Required) IDE type: Idea, WebStorm, PyCharm,
+      # RubyMine, CLion, Fleet, GoLand, PhpStorm, Rider
+      type: Idea
+      version: '2022.3.3'
+      updateChannel: Release
+      vmoptions:
+      - '-Xms2048m'
+      - '-Xmx4096m'
+components:
+- name: space-devenv-build
+  image:
+    # (Required)
+    imageName: space-devenv:latest
+    dockerfile:
+      # (Optional) path to Docker context relative to projectRoot
+      # by default, projectRoot is repository root
+      buildContext: .space
+      # (Required) path to Dockerfile relative to projectRoot
+      uri: .space/default.Dockerfile
+      #args:
+      #- 'TARGETARCH=arm64'
